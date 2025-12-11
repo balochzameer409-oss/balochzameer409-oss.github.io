@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚠️ SYSTEM BREACH</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #000;
+        font-family: 'Courier New', monospace;
+        overflow: hidden;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .red-flash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 0, 0, 0.3);
+        pointer-events: none;
+        z-index: 999;
+        animation: redFlash 0.5s infinite;
+    }
+
+    @keyframes redFlash {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+
+    .glitch-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #ff0000 0%, #000 50%, #00ff00 100%);
+        opacity: 0.15;
+        animation: glitchBg 0.2s infinite;
+        pointer-events: none;
+    }
+
+    @keyframes glitchBg {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(-5px, 5px) scale(1.01); }
+        50% { transform: translate(5px, -5px) scale(0.99); }
+        75% { transform: translate(-5px, -5px) scale(1.02); }
+    }
+
+    .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(180deg, #ff0000, #8b0000);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+        z-index: 100;
+        border-bottom: 2px solid #ff0000;
+        box-shadow: 0 0 20px #ff0000;
+    }
+
+    .camera-indicator {
+        width: 10px;
+        height: 10px;
+        background: #ff0000;
+        border-radius: 50%;
+        box-shadow: 0 0 15px #ff0000;
+        animation: cameraRecord 0.5s infinite;
+    }
+
+    @keyframes cameraRecord {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.3; transform: scale(1.5); }
+    }
+
+    .recording-text {
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        animation: blink 0.5s infinite;
+        text-shadow: 0 0 10px #ff0000;
+    }
+
+    .battery {
+        color: #ff0000;
+        font-size: 14px;
+        animation: blink 1s infinite;
+    }
+
+    .screen {
+        width: 100%;
+        height: calc(100vh - 30px);
+        margin-top: 30px;
+        padding: 15px;
+        overflow-y: auto;
+        color: #00ff00;
+        text-shadow: 0 0 5px #00ff00;
+        font-size: 12px;
+        line-height: 1.8;
+        position: relative;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    .screen::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .screen::-webkit-scrollbar-track {
+        background: #111;
+    }
+
+    .screen::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ff0000, #00ff00);
+        box-shadow: 0 0 10px #00ff00;
+        border-radius: 10px;
+    }
+
+    .warning {
+        color: #ff0000;
+        text-shadow: 0 0 15px #ff0000;
+        font-weight: bold;
+        font-size: 16px;
+        animation: blink 0.3s infinite;
+    }
+
+    .success {
+        color: #00ff00;
+        text-shadow: 0 0 10px #00ff00;
+    }
+
+    .error {
+        color: #ffff00;
+        text-shadow: 0 0 10px #ffff00;
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0.3; }
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 25px;
+        background: #1a0000;
+        border: 2px solid #ff0000;
+        margin: 12px 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 15px #ff0000;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff0000, #ff6600, #00ff00);
+        width: 0%;
+        transition: width 0.3s;
+        box-shadow: 0 0 20px #00ff00;
+        animation: progressPulse 1s infinite;
+    }
+
+    @keyframes progressPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    .skull {
+        font-size: 60px;
+        text-align: center;
+        animation: skullRotate 1.5s infinite;
+        margin: 20px 0;
+        text-shadow: 0 0 30px #ff0000;
+    }
+
+    @keyframes skullRotate {
+        0%, 100% { transform: rotate(0deg) scale(1); }
+        25% { transform: rotate(-15deg) scale(1.2); }
+        50% { transform: rotate(0deg) scale(1.3); }
+        75% { transform: rotate(15deg) scale(1.2); }
+    }
+
+    .matrix {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.15;
+    }
+
+    .typing-cursor {
+        animation: blink 0.7s infinite;
+        color: #00ff00;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .danger-text {
+        color: #ff0000;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        animation: shake 0.3s infinite;
+        margin: 15px 0;
+        text-shadow: 0 0 20px #ff0000;
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0) rotate(0deg); }
+        10% { transform: translateX(-10px) rotate(-2deg); }
+        20% { transform: translateX(10px) rotate(2deg); }
+        30% { transform: translateX(-10px) rotate(-1deg); }
+        40% { transform: translateX(10px) rotate(1deg); }
+        50% { transform: translateX(-5px) rotate(-2deg); }
+        60% { transform: translateX(5px) rotate(2deg); }
+        70% { transform: translateX(-5px) rotate(-1deg); }
+        80% { transform: translateX(5px) rotate(1deg); }
+        90% { transform: translateX(-2px) rotate(0deg); }
+    }
+
+    .code-block {
+        background: #0a0a0a;
+        border: 2px solid #ff0000;
+        border-left: 5px solid #ff0000;
+        padding: 15px;
+        margin: 15px 0;
+        font-size: 11px;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        animation: codeGlow 2s infinite;
+    }
+
+    @keyframes codeGlow {
+        0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+        50% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.8); }
+    }
+
+    .alert-box {
+        background: rgba(139, 0, 0, 0.9);
+        border: 3px solid #ff0000;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: 0 0 30px #ff0000;
+        animation: alertPulse 1s infinite;
+    }
+
+    @keyframes alertPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    .hacker-name {
+        font-size: 24px;
+        color: #00ff00;
+        text-shadow: 0 0 20px #00ff00;
+        animation: nameGlow 2s infinite;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    @keyframes nameGlow {
+        0%, 100% { text-shadow: 0 0 20px #00ff00; }
+        50% { text-shadow: 0 0 40px #00ff00, 0 0 60px #00ff00; }
+    }
+
+    .countdown {
+        font-size: 40px;
+        color: #ff0000;
+        text-align: center;
+        margin: 20px 0;
+        text-shadow: 0 0 30px #ff0000;
+        animation: countdownPulse 0.5s infinite;
+    }
+
+    @keyframes countdownPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+    }
+</style>
+</head>
+<body>
+
+<div class="red-flash"></div>
+<canvas class="matrix" id="matrix"></canvas>
+<div class="glitch-bg"></div>
+
+<div class="top-bar">
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="camera-indicator"></div>
+        <span class="recording-text">● REC</span>
+    </div>
+    <span class="recording-text">⚠️ HACKED</span>
+    <span class="battery">🔋 0%</span>
+</div>
+
+<div class="screen" id="screen"></div>
+
+<audio id="alarmSound" loop>
+    <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="beepSound">
+    <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Matrix Rain Effect
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = '01アイウエオカキクケコサシスセソタチツテト☠💀⚠🔥';
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0f0';
+    ctx.font = fontSize + 'px monospace';
+    
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+setInterval(drawMatrix, 35);
+
+// Names (یہاں نام بدلو)
+let friendName = "Ali";
+let yourName = "Zameer";
+
+let msgs = [
+    '<div class="alert-box"><span class="warning">⚠️⚠️⚠️ CRITICAL ALERT ⚠️⚠️⚠️</span></div>',
+    '<span class="warning">🚨 UNAUTHORIZED ACCESS DETECTED 🚨</span>',
+    '<span class="warning">SYSTEM BREACH IN PROGRESS...</span>',
+    '',
+    '<span class="skull">☠️💀☠️💀☠️</span>',
+    '',
+    '<span class="danger-text">⚡ INITIALIZING BLACK_HAT PROTOCOL ⚡</span>',
+    '<div class="progress-bar"><div class="progress-fill" id="prog1"></div></div>',
+    '',
+    '<span class="success">✓ Kernel exploited</span>',
+    '<span class="success">✓ Root access gained</span>',
+    '<span class="success">✓ Security disabled</span>',
+    '<span class="success">✓ Admin privileges acquired</span>',
+    '',
+    '<div class="alert-box"><span class="warning" style="font-size: 20px;">🔓 FULL SYSTEM CONTROL 🔓</span></div>',
+    '',
+    '<div class="code-block">root@target:~# exploit -t mobile --silent<br>root@target:~# disable-security --force<br>root@target:~# grant-access --full<br>[✓] All barriers removed<br>[✓] Device is now compromised</div>',
+    '',
+    '<span class="error">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '<span class="danger-text">🎥 CAMERA MODULE ACTIVATED 🎥</span>',
+    '<span class="success">✓ Front camera: STREAMING LIVE</span>',
+    '<span class="success">✓ Back camera: RECORDING</span>',
+    '<span class="success">✓ Video saved to dark server</span>',
+    '<span class="success">✓ Facial recognition: MATCHED</span>',
+    '',
+    '<span class="danger-text">🎤 AUDIO SURVEILLANCE ACTIVE 🎤</span>',
+    '<span class="success">✓ Microphone: CAPTURING</span>',
+    '<span class="success">✓ Voice patterns: ANALYZED</span>',
+    '<span class="success">✓ Conversations: RECORDED</span>',
+    '',
+    '<span class="error">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '<span class="danger-text">📱 EXTRACTING PERSONAL DATA 📱</span>',
+    '<div class="progress-bar"><div class="progress-fill" id="prog2"></div></div>',
+    '',
+    '<span class="success">✓ Contacts: 347 STOLEN</span>',
+    '<span class="success">✓ SMS Messages: 2,891 COPIED</span>',
+    '<span class="success">✓ Call logs: 1,234 EXTRACTED</span>',
+    '<span class="success">✓ Photos: 4,567 UPLOADED</span>',
+    '<span class="success">✓ Videos: 234 TRANSFERRED</span>',
+    '<span class="success">✓ Documents: 89 BREACHED</span>',
+    '<span class="success">✓ Passwords: ALL CRACKED</span>',
+    '',
+    '<span class="error">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '<span class="danger-text">🌐 HIJACKING SOCIAL ACCOUNTS 🌐</span>',
+    '<div class="progress-bar"><div class="progress-fill" id="prog3"></div></div>',
+    '',
+    '<span class="success">✓ WhatsApp: FULLY CONTROLLED</span>',
+    '<span class="success">✓ Facebook: ACCOUNT CLONED</span>',
+    '<span class="success">✓ Instagram: POSTS ACCESSIBLE</span>',
+    '<span class="success">✓ Snapchat: MESSAGES INTERCEPTED</span>',
+    '<span class="success">✓ TikTok: VIDEOS DOWNLOADED</span>',
+    '<span class="success">✓ Gmail: EMAILS FORWARDED</span>',
+    '<span class="success">✓ Banking apps: CREDENTIALS SAVED</span>',
+    '',
+    '<div class="code-block">Installing malware packages...<br>├── keylogger.exe ✓<br>├── screen_recorder.exe ✓<br>├── gps_tracker.exe ✓<br>├── remote_access.exe ✓<br>└── data_exfiltrator.exe ✓<br><br>[SUCCESS] All spyware deployed</div>',
+    '',
+    '<span class="error">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '<span class="danger-text">📍 LOCATION TRACKING ENABLED 📍</span>',
+    '<span class="success">✓ GPS: ACTIVE</span>',
+    '<span class="success">✓ WiFi networks: MAPPED</span>',
+    '<span class="success">✓ Movement history: TRACKED</span>',
+    '',
+    '<span class="error">Current Location:</span>',
+    '<span class="warning">📍 Latitude: 31.5204° N</span>',
+    '<span class="warning">📍 Longitude: 74.3587° E</span>',
+    '<span class="warning">📍 Accuracy: 5 meters</span>',
+    '<span class="success">✓ Real-time tracking: ENABLED</span>',
+    '',
+    '<span class="error">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>',
+    '<div class="countdown" id="countdown">5</div>',
+    '<span class="danger-text">SELF-DESTRUCT SEQUENCE INITIATED</span>',
+    '<span class="error">Device will be wiped in...</span>',
+    '',
+    '<span class="skull">💀💀💀💀💀💀💀</span>',
+    '',
+    '<div class="alert-box" style="background: rgba(0, 100, 0, 0.8); border-color: #00ff00;">',
+    '<span style="color: #fff; font-size: 22px;">━━━━━━━━━━━━━━━━━━━━━</span><br>',
+    '<span style="color: #ff0000; font-size: 24px; font-weight: bold;">TARGET IDENTIFIED:</span><br>',
+    '<span style="color: #ffff00; font-size: 28px; font-weight: bold;">' + friendName + '</span><br><br>',
+    '<span style="color: #00ff00; font-size: 20px;">STATUS: ✓ FULLY HACKED</span><br>',
+    '<span style="color: #00ff00; font-size: 20px;">CONTROL: 100%</span><br>',
+    '<span style="color: #fff; font-size: 22px;">━━━━━━━━━━━━━━━━━━━━━</span>',
+    '</div>',
+    '',
+    '<span class="error">All your secrets are mine now... 😈</span>',
+    '<span class="error">Every message, every photo, every password...</span>',
+    '<span class="error">Your digital life is under my control...</span>',
+    '',
+    '<span class="danger-text">🔥🔥🔥 GAME OVER 🔥🔥🔥</span>',
+    '',
+    '<div class="alert-box">',
+    '<span style="color: #ff0000; font-size: 18px;">MASTERMIND REVEALED:</span><br><br>',
+    '<span class="hacker-name">👑 ' + yourName + ' 👑</span><br>',
+    '<span style="color: #00ff00;">The One Who Owns You Now</span>',
+    '</div>',
+    '',
+    '<span class="typing-cursor">█</span>'
+];
+
+let index = 0;
+let scr = document.getElementById("screen");
+let alarmSound = document.getElementById("alarmSound");
+let beepSound = document.getElementById("beepSound");
+
+// Vibration
+function vibrate(pattern = [200, 100, 200]) {
+    if (navigator.vibrate) {
+        navigator.vibrate(pattern);
+    }
+}
+
+// Flashlight effect (won't work on all devices but adds to effect)
+function flashScreen() {
+    document.body.style.background = '#ff0000';
+    setTimeout(() => {
+        document.body.style.background = '#000';
+    }, 100);
+}
+
+// Progress bars
+function fillProgress(id, duration) {
+    let prog = document.getElementById(id);
+    if (!prog) return;
+    
+    let width = 0;
+    let interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            beepSound.play();
+        } else {
+            width += 2;
+            prog.style.width = width + '%';
+        }
+    }, duration / 50);
+}
+
+// Countdown
+let countdownNum = 5;
+function startCountdown() {
+    let countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+    
+    let interval = setInterval(() => {
+        countdownNum--;
+        if (countdownNum <= 0) {
+            clearInterval(interval);
+            countdownEl.innerHTML = '💥';
+            vibrate([500, 200, 500, 200, 500]);
+            flashScreen();
+        } else {
+            countdownEl.innerHTML = countdownNum;
+            vibrate([100]);
+            beepSound.play();
+        }
+    }, 1000);
+}
+
+// Main typing function
+function typeNext() {
+    if (index < msgs.length) {
+        scr.innerHTML += msgs[index] + '\n';
+        scr.scrollTop = scr.scrollHeight;
+        
+        // Progress bars
+        if (msgs[index].includes('prog1')) {
+            setTimeout(() => fillProgress('prog1', 3000), 100);
+        }
+        if (msgs[index].includes('prog2')) {
+            setTimeout(() => fillProgress('prog2', 4000), 100);
+        }
+        if (msgs[index].includes('prog3')) {
+            setTimeout(() => fillProgress('prog3', 3500), 100);
+        }
+        
+        // Countdown
+        if (msgs[index].includes('countdown')) {
+            setTimeout(startCountdown, 500);
+        }
+        
+        // Vibration on critical messages
+        if (msgs[index].includes('HACKED') || msgs[index].includes('COMPROMISED') || msgs[index].includes('BREACH')) {
+            vibrate([300, 100, 300]);
+            flashScreen();
+        }
+        
+        index++;
+        
+        // Variable speed
+        let delay = 400;
+        if (msgs[index] && msgs[index].includes('progress-bar')) {
+            delay = 1000;
+        }
+        if (msgs[index] && msgs[index].includes('skull')) {
+            delay = 2000;
+        }
+        if (msgs[index] && msgs[index].includes('countdown')) {
+            delay = 6000;
+        }
+        if (msgs[index] && msgs[index].includes('alert-box')) {
+            delay = 1500;
+        }
+        
+        setTimeout(typeNext, delay);
+    } else {
+        alarmSound.pause();
+        vibrate([1000]);
+    }
+}
+
+// Start!
+window.onload = function() {
+    setTimeout(() => {
+        alarmSound.play().catch(e => console.log('Audio blocked'));
+        vibrate([500, 200, 500]);
+        typeNext();
+    }, 1000);
+};
+
+// Prevent back button
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+};
+</script>
+
+</body>
+</html>
